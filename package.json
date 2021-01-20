@@ -1,0 +1,26 @@
+{
+  "name": "logstore",
+  "version": "1.0.0",
+  "description": "Sistema de log",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/silvanotfound/logstore.git"
+  },
+  "author": "Carlos Henrique da Silva",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/silvanotfound/logstore/issues"
+  },
+  "homepage": "https://github.com/silvanotfound/logstore#readme",
+  "dependencies": {
+    "axios": "^0.21.1",
+    "ejs": "^3.1.5",
+    "express": "^4.17.1",
+    "jquery": "^3.5.1",
+    "jsdom": "^16.4.0"
+  }
+}
