@@ -1,7 +1,11 @@
 .container{
-    margin-top: 15px;            
+    margin-top: 15px;              
 }
 .container,
 .container-button{
-    margin-bottom: 15px;
+    margin-bottom: 15px;    
+}
+td{
+    white-space: normal;
+    max-width: 900px;
 }

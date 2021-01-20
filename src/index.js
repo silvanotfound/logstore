@@ -13,14 +13,17 @@ APP.get("/", function(req,res){
 
     let responseLog = interface.getLog();
     let rowtable = [];
+    let ordernadLis;
     responseLog.then(function (response) {        
                 
-        for (let index = 0; index < 10; index++) {            
+        for (let index = 0; index < response.data.length; index++) {            
             rowtable.push({id:response.data[index].id, content:response.data[index].content, occurrences:response.data[index].occurrences});            
         }
 
-        console.log(rowtable);
-        res.render("index", {rowtable:rowtable});
+        ordernadLis = rowtable.sort(function(rowOccurrence1, rowOccurrence2){
+            return rowOccurrence2.occurrences - rowOccurrence1.occurrences;
+        })
+        res.render("index", {rowtable:ordernadLis});
       })
       .catch(function (error) {
         console.log(error);

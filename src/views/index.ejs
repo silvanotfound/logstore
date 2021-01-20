@@ -21,15 +21,18 @@
 
     <div class="container">
 
-        <div class="container-button">
-            <div class="d-grid gap-2 d-md-flex justify-content-md-end">        
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#new-log-modal" onclick="clearinput()" id="new-log">
-                    + Adicionar Log
-                  </button>
-            </div>
-        </div>
 
-        <table id="table-log" class="table table-striped ">
+
+        <div class="container">
+          <div class="container-button">
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end">        
+              <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#new-log-modal" onclick="clearinput()" id="new-log">
+                  + Adicionar Log
+                </button>
+            </div>
+          </div>
+
+          <table id="table-log" class="table table-striped table-bordered">
             <thead class="table-light">
               <tr>
                 <th scope="col">ID</th>
@@ -39,7 +42,7 @@
               </tr>
             </thead>
             <tbody>
-              <% for(let index = 0; index < rowtable.length; index++){ %>
+              <% for(let index = 0; index < 100; index++){ %>
                 <tr>
                   <th scope="row"><%= rowtable[index].id %></th>
                   <td ><%= rowtable[index].content %></td>
@@ -49,6 +52,7 @@
               <% } %>
             </tbody>
         </table>
+        </div>
 
     </div>
 
