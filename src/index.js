@@ -2,12 +2,16 @@ const { log } = require('console');
 const EXPRESS = require('express');
 const interface = require('./scripts/interface');
 const {$,jQuery} = require('jQuery');
+const BODY_PARSER = require('body-parser');
 
 const APP = EXPRESS();
 const PORT = 3000;
 
 APP.set('view engine', 'ejs');
 APP.use(EXPRESS.static('public'));
+APP.use(BODY_PARSER.urlencoded({extended:false}));
+APP.use(BODY_PARSER.json());
+
 
 APP.get("/", function(req,res){      
 
@@ -28,6 +32,19 @@ APP.get("/", function(req,res){
       .catch(function (error) {
         console.log(error);
       });
+});
+
+
+APP.post("/savelog", (req, res) =>{
+   let formData = {
+    occurrences:req.body.occurrences,
+    content:req.body.log
+   }
+   
+    if (req.body.occurrences != null && req.body.log != null) {
+        interface.postLog(formData);    
+    }
+
 });
 
 APP.listen(PORT,function(erro){

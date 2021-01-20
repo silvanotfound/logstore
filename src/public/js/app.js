@@ -1,6 +1,26 @@
-$('#new-log-modal').keypress(function(event){
+function validateFields() {
+    return $('#LogId').val().length != 0 && $('#LogText').val().length != 0 ? true:false;
+} 
+
+$('#LogId').keypress(function(event){
     if(event.keyCode == 13){
-        $('#new-log-modal').modal('toggle');
+        if (validateFields()) {
+            $('#new-log-modal').modal('toggle');    
+        }else{
+            $("#messagefieldOccurrences").text('*').fadeIn();
+            event.preventDefault();
+        }
+    }
+});
+
+$('#LogText').keypress(function(event){
+    if(event.keyCode == 13){
+        if (validateFields()) {
+            $('#new-log-modal').modal('toggle');                 
+        }else{
+            $("#messagefieldContent").text('*').fadeIn();         
+            event.preventDefault();
+        }
     }
 });
 
@@ -20,6 +40,13 @@ function removeRowTable() {
         $(this).closest("tr").remove();             
     });    
 }
+
+$('#new-log-modal').on('hidden.bs.modal', function () {
+    setTimeout(function(){ 
+        location.reload(); 
+    },2000);    
+    
+});
 
 function clearinput() {
     $('#new-log').on("click", function () {

@@ -66,20 +66,20 @@
             </div>
             <div class="modal-body">
 
-                <form>
+                <form method="POST" action="/savelog" id="formeLog" >
                     <div class="mb-3">
-                      <label for="LogId" class="form-label">Id</label>
-                      <input type="text" class="form-control" id="LogId">                      
+                      <label for="LogId" class="form-label">Ocorrências</label>
+                      <span id="messagefieldOccurrences" class="messagefield"></span>
+                      <span id="fieldOccurrences" class="messagefield"></span>
+                      <input type="text" class="form-control" id="LogId" name="occurrences">                      
                     </div>
                     <div class="mb-3">
-                      <label for="LogText" class="form-label">Link</label>
-                      <input type="text" class="form-control" id="LogText">
-                    </div>
+                      <label for="LogText" class="form-label">Log</label>
+                      <span id="messagefieldContent" class="messagefield"></span>                      
+                      <input type="text" class="form-control" id="LogText" name="log">
+                    </div>                    
+                    <button type="submit" class="btn btn-danger">enviar</button>                    
                   </form>                
-
-            </div>
-            <div class="modal-footer">              
-              <button type="button" class="btn btn-primary">Salvar Log</button>
             </div>
           </div>
         </div>
