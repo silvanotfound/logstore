@@ -10,7 +10,6 @@ APP.use(EXPRESS.static('public'));
 APP.use(BODY_PARSER.urlencoded({extended:false}));
 APP.use(BODY_PARSER.json());
 
-
 APP.get("/", function(req,res){      
 
     let responseLog = interface.getLog();

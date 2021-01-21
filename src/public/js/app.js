@@ -1,3 +1,4 @@
+
 function validateFields(id) {
 
     if ($('#LogId').val().length != 0 && $('#LogText').val().length != 0) {
@@ -10,6 +11,52 @@ function validateFields(id) {
         }
     }
 } 
+
+function removeRowTable() {
+    $('#table-log').on("click", "#deleteLogButton", function(params) {        
+
+        let dataTable = {
+            id: $(this).closest("tr").find('.idRow').text(),
+            content: $(this).closest("tr").find('.contentRow').text(),
+            occurrences: $(this).closest("tr").find('.occurrenceRow').text()
+        }
+
+        let data = JSON.stringify(dataTable);
+    
+        console.log(data);
+        
+        $.ajax({
+            url: 'http://localhost:8080/logstore-0.0.1-SNAPSHOT/log',
+            type: 'DELETE',            
+            data: data,
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+           
+            success: function(result) {
+                console.log(result);
+            },
+            error: function(result){
+                console.log(result);
+            }
+        });        
+        reloadBody();        
+    });    
+}
+
+function clearinput() {
+    $('#new-log').on("click", function () {
+        $('#LogId').val('');
+        $('#LogText').val('');
+    })
+}
+
+function reloadBody(){
+    setTimeout(function(){ 
+        location.reload(); 
+    },2000);  
+}
 
 $('#buttomSubmit').on('click', function(){
     validateFields();
@@ -36,22 +83,6 @@ $(document).ready(function(){
     });
 });
 
-function removeRowTable() {
-    $('#table-log').on("click", "#deleteLogButton", function(params) {
-        $(this).closest("tr").remove();             
-    });    
-}
-
 $('#new-log-modal').on('hidden.bs.modal', function () {
-    setTimeout(function(){ 
-        location.reload(); 
-    },2000);    
-    
+    reloadBody();      
 });
-
-function clearinput() {
-    $('#new-log').on("click", function () {
-        $('#LogId').val('');
-        $('#LogText').val('');
-    })
-}
