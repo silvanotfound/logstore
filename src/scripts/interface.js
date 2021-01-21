@@ -10,7 +10,6 @@ module.exports = {
             content:data.content,
           })
           .then(function (response) {
-            console.log("posted");
           }).catch(function(error){
             console.log(error);      
           })

@@ -1,9 +1,7 @@
 const { log } = require('console');
 const EXPRESS = require('express');
 const interface = require('./scripts/interface');
-const {$,jQuery} = require('jQuery');
 const BODY_PARSER = require('body-parser');
-
 const APP = EXPRESS();
 const PORT = 3000;
 
@@ -18,6 +16,8 @@ APP.get("/", function(req,res){
     let responseLog = interface.getLog();
     let rowtable = [];
     let ordernadLis;
+    let totalPage;
+    let page;
     responseLog.then(function (response) {        
                 
         for (let index = 0; index < response.data.length; index++) {            
@@ -27,7 +27,13 @@ APP.get("/", function(req,res){
         ordernadLis = rowtable.sort(function(rowOccurrence1, rowOccurrence2){
             return rowOccurrence2.occurrences - rowOccurrence1.occurrences;
         })
-        res.render("index", {rowtable:ordernadLis});
+        
+        totalPage = (Math.round(response.data.length / 1000));
+        
+        res.render("index", {
+            rowtable:ordernadLis,
+            totalPage:totalPage
+        });
       })
       .catch(function (error) {
         console.log(error);
@@ -40,8 +46,8 @@ APP.post("/savelog", (req, res) =>{
     occurrences:req.body.occurrences,
     content:req.body.log
    }
-   
-    if (req.body.occurrences != null && req.body.log != null) {
+
+   if (req.body.occurrences.length != 0 && req.body.log.length != 0) {    
         interface.postLog(formData);    
     }
 

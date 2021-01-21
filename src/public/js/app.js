@@ -1,26 +1,29 @@
-function validateFields() {
-    return $('#LogId').val().length != 0 && $('#LogText').val().length != 0 ? true:false;
+function validateFields(id) {
+
+    if ($('#LogId').val().length != 0 && $('#LogText').val().length != 0) {
+        $('#new-log-modal').modal('toggle')
+    }else{
+        if (!$('#LogId').val().length != 0) {
+            $("#messagefieldOccurrences").text('*').fadeIn();
+        }else if(!$('#LogText').val().length != 0){
+            $("#messagefieldContent").text('*').fadeIn();
+        }
+    }
 } 
+
+$('#buttomSubmit').on('click', function(){
+    validateFields();
+});
 
 $('#LogId').keypress(function(event){
     if(event.keyCode == 13){
-        if (validateFields()) {
-            $('#new-log-modal').modal('toggle');    
-        }else{
-            $("#messagefieldOccurrences").text('*').fadeIn();
-            event.preventDefault();
-        }
+        validateFields();
     }
 });
 
 $('#LogText').keypress(function(event){
     if(event.keyCode == 13){
-        if (validateFields()) {
-            $('#new-log-modal').modal('toggle');                 
-        }else{
-            $("#messagefieldContent").text('*').fadeIn();         
-            event.preventDefault();
-        }
+        validateFields();
     }
 });
 
@@ -35,8 +38,6 @@ $(document).ready(function(){
 
 function removeRowTable() {
     $('#table-log').on("click", "#deleteLogButton", function(params) {
-        
-        console.log(params);
         $(this).closest("tr").remove();             
     });    
 }

@@ -1,15 +1,21 @@
-.container{
-    margin-top: 15px;              
+.container-table{
+    max-height: 700px;
+    overflow: auto;
+    padding: 10px 10px 10px 10px;
 }
-.container,
-.container-button{
-    margin-bottom: 15px;    
+.container-table,
+.container-pagination{
+    margin-top: 20px;    
 }
+
 .messagefield{
     color: #ff8080;
     font-weight: bold;
 }
+
 td{
     white-space: normal;
     max-width: 900px;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
