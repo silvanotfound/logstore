@@ -15,4 +15,4 @@ Acesar pasta SRC do projtos e executar o comando para iniciar o servidor.
 Observação: O servirdor vai ser iniciado na porta 3000
 ```
 
-Executar a linha de comando: `nodemon index`
+Executar a linha de comando: `node index`
